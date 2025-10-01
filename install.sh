@@ -66,66 +66,31 @@ check_dependencies() {
 install_script() {
     local install_dir="$HOME/.local/bin"
     local script_path="$install_dir/poke-fetch"
-    
+    local source_script="$(dirname "$0")/bin/poke-fetch"
+
     print_info "Installing poke-fetch script..."
-    
-    # Create directory if it doesn't exist
+
+    # Create install directory if necessary
     if [[ ! -d "$install_dir" ]]; then
         mkdir -p "$install_dir"
         print_success "Created directory: $install_dir"
     fi
-    
-    # Check if script already exists
+
+    # Check if already installed
     if [[ -f "$script_path" ]]; then
         print_warning "poke-fetch already exists at $script_path"
         read -p "Overwrite? [y/N] " -n 1 -r
         echo
         if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            print_info "Installation cancelled"
+            print_info "Installation cancelled, poke-fetch was already installed."
             exit 0
         fi
     fi
-    
-    # Create the script
-    cat > "$script_path" << 'EOF'
-#!/usr/bin/env bash
 
-set -euo pipefail
-
-# Check fastfetch dependency
-command -v fastfetch >/dev/null 2>&1 || {
-    echo "❌ fastfetch is not installed" >&2
-    exit 1
-}
-
-if command -v pokemon-colorscripts >/dev/null 2>&1; then
-    fastfetch_cmd=(fastfetch --file-raw /dev/stdin --logo-padding-left 4)
-    
-    # Hardcoded, depends on the config - maybe a future improvement
-    fastfetch_height=15
-    
-    # Get generated pokemon height
-    pokemon_output=$(pokemon-colorscripts -r --no-title)
-    pokemon_lines=$(echo "$pokemon_output" | wc -l)
-    
-    if (( fastfetch_height > pokemon_lines )); then
-        padding=$(( (fastfetch_height - pokemon_lines) / 2 ))
-        {
-            for ((i=0; i<padding; i++)); do
-                echo
-            done
-            echo "$pokemon_output"
-        } | "${fastfetch_cmd[@]}"
-    else
-        echo "$pokemon_output" | "${fastfetch_cmd[@]}"
-    fi
-else
-    fastfetch
-fi
-EOF
-    
-    # Make executable
+    # Copy script
+    cp "$source_script" "$script_path"
     chmod +x "$script_path"
+
     print_success "Script installed at: $script_path"
     echo ""
 }
