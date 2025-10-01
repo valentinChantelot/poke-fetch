@@ -1,37 +1,35 @@
 #!/usr/bin/env bash
+
 set -euo pipefail
 
-# Exécuter seulement pour les shells interactifs
-# [[ $- != *i* ]] && exit 0
+# check fastfetch dependency
+command -v fastfetch >/dev/null 2>&1 || {
+    echo "❌ fastfetch is not installed" >&2
+    exit 1
+}
 
-# Préconditions
-if ! command -v fastfetch >/dev/null 2>&1; then
-  echo "fastfetch introuvable. Installe-le d'abord." >&2
-  exit 1
-fi
+if command -v pokemon-colorscripts >/dev/null 2>&1 && command -v fastfetch >/dev/null 2>&1; then
+    fastfetch_cmd=(fastfetch --file-raw /dev/stdin --logo-padding-left 4)
 
-# Si pokemon-colorscripts est absent, fallback : fastfetch seul
-if ! command -v pokemon-colorscripts >/dev/null 2>&1; then
-  fastfetch
-  exit 0
-fi
-
-# Choix de l'appel à pokemon-colorscripts (try --no-title sinon sans)
-if pokemon-colorscripts --help 2>&1 | grep -q -- '--no-title'; then
-  POKE_CMD=(pokemon-colorscripts -r --no-title)
+    # hardcoded, depends on the config - maybe a future improvment 
+    fastfetch_height=15
+    
+    # get generated pokemon height
+    pokemon_output=$(pokemon-colorscripts -r 1-2 --no-title)
+    pokemon_lines=$(echo "$pokemon_output" | wc -l)
+    
+    if (( fastfetch_height > pokemon_lines )); then
+        padding=$(( (fastfetch_height - pokemon_lines) / 2 ))
+        
+        {
+            for ((i=0; i<padding; i++)); do
+                echo
+            done
+            echo "$pokemon_output"
+        } | "${fastfetch_cmd[@]}"
+    else
+        echo "$pokemon_output" | "${fastfetch_cmd[@]}"
+    fi
 else
-  POKE_CMD=(pokemon-colorscripts -r)
-fi
-
-# Récupérer la sortie (ANSI colors)
-POKE_OUTPUT="$("${POKE_CMD[@]}" 2>/dev/null || true)"
-
-# Utiliser --data-raw si dispo, sinon fallback fichier temporaire + --file-raw
-if fastfetch --help 2>&1 | grep -q -- '--data-raw'; then
-  fastfetch --data-raw "$POKE_OUTPUT"
-else
-  tmpfile=$(mktemp)
-  printf '%s\n' "$POKE_OUTPUT" > "$tmpfile"
-  fastfetch --file-raw "$tmpfile"
-  rm -f "$tmpfile"
+    fastfetch
 fi
