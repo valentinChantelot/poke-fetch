@@ -1,0 +1,98 @@
+# poke-fetch
+
+**poke-fetch** is a small utility that combines two existing tools:
+
+* [fastfetch](https://github.com/fastfetch-cli/fastfetch): a modern, customizable system fetch tool
+* [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts): Pokémon ASCII art
+
+The script simply displays a Pokémon as the logo in fastfetch, vertically centered when possible.
+
+You can provide custom options to `pokemon-colorscripts` through the script, and fastfetch remains fully configurable via its own configuration file:
+
+```
+~/.config/fastfetch/config.jsonc
+```
+
+---
+
+## Requirements
+
+* [fastfetch](https://github.com/fastfetch-cli/fastfetch)
+* [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts)
+
+Please refer to the linked repositories for installation instructions of these dependencies.
+
+---
+
+## Installation
+
+Clone the repository and run the installation script:
+
+```bash
+git clone https://github.com/username/poke-fetch.git
+cd poke-fetch
+./install.sh
+```
+
+This installs the script to `~/.local/bin/poke-fetch`.
+Make sure `~/.local/bin` is included in your `$PATH`.
+
+---
+
+## Usage
+
+Run the script directly:
+
+```bash
+poke-fetch
+```
+
+To override the Pokémon command (for example, to select a specific Pokémon):
+
+```bash
+poke-fetch --poke "pokemon-colorscripts -n pikachu"
+```
+
+Fastfetch configuration (modules, system info, etc.) can be customized in:
+
+```
+~/.config/fastfetch/config.jsonc
+```
+
+---
+
+## Testing the installation
+
+To confirm installation was successful, run:
+
+```bash
+poke-fetch
+```
+
+You should see a Pokémon displayed along with your system information.
+
+---
+
+## Uninstallation
+
+From the project directory, run:
+
+```bash
+./uninstall.sh
+```
+
+This removes `~/.local/bin/poke-fetch`.
+
+---
+
+## Related projects
+
+If you are looking for a more advanced implementation of the same idea, check out [pokefetch](https://github.com/Discomanfulanito/pokefetch).
+It provides a similar feature set but with more functionality and polish.
+
+---
+
+## License
+
+poke-fetch is distributed under the [Unlicense](https://unlicense.org/), placing the code in the public domain.
+You are free to use, modify, and redistribute it without restriction.
