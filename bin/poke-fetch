@@ -30,7 +30,6 @@ command -v fastfetch >/dev/null 2>&1 || {
     exit 1
 }
 
-
 if ! pokemon_output=$(eval "$POKE_CMD" 2>/dev/null) || [[ -z "$pokemon_output" ]]; then
     exec fastfetch -c /usr/share/fastfetch/presets/examples/20.jsonc
 fi
