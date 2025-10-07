@@ -30,27 +30,6 @@ cd poke-fetch
 
 This installs the script to `~/.local/bin/poke-fetch`.
 
-### Add `~/.local/bin` to your `$PATH` (if needed)
-
-If running `poke-fetch` gives a “command not found” error, add the following line to your shell configuration file:
-
-**For Bash** (`~/.bashrc`):
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-**For Zsh** (`~/.zshrc`):
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-Then reload your shell:
-
-```bash
-source ~/.bashrc   # or ~/.zshrc
-```
 
 
 ## Usage
@@ -102,8 +81,6 @@ source ~/.bashrc   # or ~/.zshrc
 ```
 
 
----
-
 ## Testing the installation
 
 ```bash
@@ -112,7 +89,26 @@ poke-fetch
 
 You should see a Pokémon displayed above your system information.
 
----
+If running `poke-fetch` gives a “command not found” error, add the following line to your shell configuration file:
+
+**For Bash** (`~/.bashrc`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+**For Zsh** (`~/.zshrc`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Then reload your shell:
+
+```bash
+source ~/.bashrc   # or ~/.zshrc
+```
+
 
 ## Uninstallation
 
