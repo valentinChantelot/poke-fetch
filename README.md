@@ -2,7 +2,6 @@
 
 **poke-fetch** is a simple utility that displays a Pokémon as the logo in [fastfetch](https://github.com/fastfetch-cli/fastfetch).
 
----
 
 ## Requirements
 
@@ -18,7 +17,6 @@ If you prefer another tool, you can use any command-line Pokémon getter you lik
 * [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts)
 * [krabby](https://github.com/joshiemoore/krabby)
 
----
 
 ## Installation
 
@@ -54,7 +52,6 @@ Then reload your shell:
 source ~/.bashrc   # or ~/.zshrc
 ```
 
----
 
 ## Usage
 
@@ -81,7 +78,6 @@ Your **fastfetch** configuration (modules, layout, system info, etc.) remains fu
 
 For configuration details, see the [fastfetch documentation](https://github.com/fastfetch-cli/fastfetch#configuration).
 
----
 
 ## Auto-run on terminal launch
 
@@ -128,13 +124,11 @@ From the project directory:
 
 This removes `~/.local/bin/poke-fetch`.
 
----
 
 ## Related projects
 
 If you want something fancier or feature-rich, check out [pokefetch](https://github.com/Discomanfulanito/pokefetch).
 
----
 
 ## License
 
