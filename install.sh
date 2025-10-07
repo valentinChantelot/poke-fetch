@@ -44,19 +44,23 @@ check_dependencies() {
         print_success "fastfetch is installed"
     fi
     
-    # Check pokemon-colorscripts
-    if ! command -v pokemon-colorscripts >/dev/null 2>&1; then
-        print_error "pokemon-colorscripts is not installed"
-        echo "         Install it from: https://gitlab.com/phoneybadger/pokemon-colorscripts"
+    # Check pokeget-rs (default Pokémon getter)
+    if ! command -v pokeget-rs >/dev/null 2>&1; then
+        print_warning "pokeget-rs is not installed"
+        echo "         poke-fetch uses pokeget-rs by default."
+        echo "         You can install it from: https://github.com/flochtililoch/pokeget-rs"
+        echo ""
+        print_info "Alternatively, you can use another Pokémon getter (e.g. krabby or pokemon-colorscripts)."
+        print_info "See the README for details: https://github.com/username/poke-fetch#requirements"
         all_found=false
     else
-        print_success "pokemon-colorscripts is installed"
+        print_success "pokeget-rs is installed"
     fi
     
     if [[ "$all_found" == false ]]; then
         echo ""
-        print_warning "Please install missing dependencies and run this script again"
-        exit 1
+        print_warning "Some dependencies are missing. poke-fetch may not work until they are installed."
+        echo ""
     fi
     
     echo ""
