@@ -1,32 +1,28 @@
-# poke-fetch (name will change)
+# poke-fetch
 
-**poke-fetch** is a small utility that combines two existing tools:
-
-* [fastfetch](https://github.com/fastfetch-cli/fastfetch): a modern, customizable system fetch tool
-* [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts): Pokémon ASCII art
-
-The script simply displays a Pokémon as the logo in fastfetch, vertically centered when possible.
-
-You can provide custom options to `pokemon-colorscripts` through the script, and fastfetch remains fully configurable via its own configuration file:
-
-```
-~/.config/fastfetch/config.jsonc
-```
+**poke-fetch** is a simple utility that displays a Pokémon as the logo in [fastfetch](https://github.com/fastfetch-cli/fastfetch).
 
 ---
 
 ## Requirements
 
 * [fastfetch](https://github.com/fastfetch-cli/fastfetch)
-* [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts)
+* A Pokémon fetcher (see below)
 
-Please refer to the linked repositories for installation instructions of these dependencies.
+By default, **poke-fetch** uses [pokeget-rs](https://github.com/flochtililoch/pokeget-rs).
+You need to install it to make the script work out of the box.
+
+If you prefer another tool, you can use any command-line Pokémon getter you like — for example:
+
+* [pokeget-rs](https://github.com/flochtililoch/pokeget-rs) (default, fast and simple)
+* [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts)
+* [krabby](https://github.com/joshiemoore/krabby)
 
 ---
 
 ## Installation
 
-Clone the repository and run the installation script:
+Clone the repository and run the installer:
 
 ```bash
 git clone https://github.com/username/poke-fetch.git
@@ -35,47 +31,96 @@ cd poke-fetch
 ```
 
 This installs the script to `~/.local/bin/poke-fetch`.
-Make sure `~/.local/bin` is included in your `$PATH`.
+
+### Add `~/.local/bin` to your `$PATH` (if needed)
+
+If running `poke-fetch` gives a “command not found” error, add the following line to your shell configuration file:
+
+**For Bash** (`~/.bashrc`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+**For Zsh** (`~/.zshrc`):
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Then reload your shell:
+
+```bash
+source ~/.bashrc   # or ~/.zshrc
+```
 
 ---
 
 ## Usage
 
-Run the script directly:
+Run the script:
 
 ```bash
 poke-fetch
 ```
 
-To override the Pokémon command (for example, to select a specific Pokémon):
+To use a custom Pokémon command instead of the default, either to use another pokemon getter, display a specific pokemon, or whatever you chose as config for your pokemon getter:
 
 ```bash
-poke-fetch --poke "pokemon-colorscripts -n pikachu"
+poke-fetch --poke "pokeget kanto"
+poke-fetch --poke "pokeget pikachu"
+poke-fetch --poke "pokemon-colorscripts -r"
+poke-fetch --poke "krabby random"
 ```
 
-Fastfetch configuration (modules, system info, etc.) can be customized in:
+Your **fastfetch** configuration (modules, layout, system info, etc.) remains fully customizable in:
 
 ```
 ~/.config/fastfetch/config.jsonc
 ```
 
+For configuration details, see the [fastfetch documentation](https://github.com/fastfetch-cli/fastfetch#configuration).
+
 ---
 
-## Testing the installation
+## Auto-run on terminal launch
 
-To confirm installation was successful, run:
+If you want **poke-fetch** to run every time you open a terminal, add the following line at the end of your shell configuration file:
+
+**For Bash** (`~/.bashrc`):
 
 ```bash
 poke-fetch
 ```
 
-You should see a Pokémon displayed along with your system information.
+**For Zsh** (`~/.zshrc`):
+
+```bash
+poke-fetch
+```
+
+Then reload your shell:
+
+```bash
+source ~/.bashrc   # or ~/.zshrc
+```
+
+
+---
+
+## Testing the installation
+
+```bash
+poke-fetch
+```
+
+You should see a Pokémon displayed above your system information.
 
 ---
 
 ## Uninstallation
 
-From the project directory, run:
+From the project directory:
 
 ```bash
 ./uninstall.sh
@@ -87,12 +132,11 @@ This removes `~/.local/bin/poke-fetch`.
 
 ## Related projects
 
-If you are looking for a more advanced implementation of the same idea, check out [pokefetch](https://github.com/Discomanfulanito/pokefetch).
-It provides a similar feature set but with more functionality and polish.
+If you want something fancier or feature-rich, check out [pokefetch](https://github.com/Discomanfulanito/pokefetch).
 
 ---
 
 ## License
 
 poke-fetch is distributed under the [Unlicense](https://unlicense.org/), placing the code in the public domain.
-You are free to use, modify, and redistribute it without restriction.
+Use it, modify it, share it — no restrictions.
