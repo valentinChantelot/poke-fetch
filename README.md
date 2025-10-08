@@ -1,3 +1,5 @@
+![poke-fetch demo](./assets/demo.gif)
+
 # poke-fetch
 
 **poke-fetch** is a simple utility that displays a Pokémon as the logo in [fastfetch](https://github.com/fastfetch-cli/fastfetch).
