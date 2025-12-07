@@ -51,7 +51,7 @@ check_dependencies() {
         echo "         You can install it from: https://github.com/flochtililoch/pokeget-rs"
         echo ""
         print_info "Alternatively, you can use another Pokémon getter (e.g. krabby or pokemon-colorscripts)."
-        print_info "See the README for details: https://github.com/username/poke-fetch#requirements"
+        print_info "See the README for details: https://github.com/valentinChantelot/poke-fetch/tree/main?tab=readme-ov-file#requirements"
         all_found=false
     else
         print_success "pokeget-rs is installed"
