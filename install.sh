@@ -45,10 +45,10 @@ check_dependencies() {
     fi
     
     # Check pokeget-rs (default Pokémon getter)
-    if ! command -v pokeget-rs >/dev/null 2>&1; then
+    if ! command -v pokeget >/dev/null 2>&1; then
         print_warning "pokeget-rs is not installed"
         echo "         poke-fetch uses pokeget-rs by default."
-        echo "         You can install it from: https://github.com/flochtililoch/pokeget-rs"
+        echo "         You can install it from: https://github.com/talwat/pokeget-rs"
         echo ""
         print_info "Alternatively, you can use another Pokémon getter (e.g. krabby or pokemon-colorscripts)."
         print_info "See the README for details: https://github.com/valentinChantelot/poke-fetch/tree/main?tab=readme-ov-file#requirements"
