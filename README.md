@@ -14,12 +14,12 @@
 * [fastfetch](https://github.com/fastfetch-cli/fastfetch)
 * A Pokémon fetcher (see below)
 
-By default, **poke-fetch** uses [pokeget-rs](https://github.com/flochtililoch/pokeget-rs).
+By default, **poke-fetch** uses [pokeget-rs](https://github.com/talwat/pokeget-rs).
 You need to install it to make the script work out of the box.
 
 If you prefer another tool, you can use any command-line Pokémon getter you like — for example:
 
-* [pokeget-rs](https://github.com/flochtililoch/pokeget-rs) (default, fast and simple)
+* [pokeget-rs](https://github.com/talwat/pokeget-rs) (default, fast and simple)
 * [pokemon-colorscripts](https://gitlab.com/phoneybadger/pokemon-colorscripts)
 * [krabby](https://github.com/joshiemoore/krabby)
 
@@ -29,12 +29,12 @@ If you prefer another tool, you can use any command-line Pokémon getter you lik
 Clone the repository and run the installer:
 
 ```bash
-git clone https://github.com/username/poke-fetch.git
+git clone https://github.com/valentinChantelot/poke-fetch.git
 cd poke-fetch
 ./install.sh
 ```
 
-This installs the script to `~/.local/bin/poke-fetch`.
+This installs the script to `~/.local/bin/poke-fetch`. Run `poke-fetch` to verify the installation.
 
 
 
@@ -55,6 +55,8 @@ poke-fetch --poke "pokemon-colorscripts -r"
 poke-fetch --poke "krabby random"
 ```
 
+If the Pokémon command isn't installed or fails, **poke-fetch** falls back to running fastfetch alone. Your system info will still display.
+
 Your **fastfetch** configuration (modules, layout, system info, etc.) remains fully customizable in:
 
 ```
@@ -66,15 +68,7 @@ For configuration details, see the [fastfetch documentation](https://github.com/
 
 ## Auto-run on terminal launch
 
-If you want **poke-fetch** to run every time you open a terminal, add the following line at the end of your shell configuration file:
-
-**For Bash** (`~/.bashrc`):
-
-```bash
-poke-fetch
-```
-
-**For Zsh** (`~/.zshrc`):
+If you want **poke-fetch** to run every time you open a terminal, add the following line at the end of your shell config (`~/.bashrc` or `~/.zshrc`):
 
 ```bash
 poke-fetch
@@ -87,26 +81,12 @@ source ~/.bashrc   # or ~/.zshrc
 ```
 
 
-## Testing the installation
+## Troubleshooting
+
+If running `poke-fetch` gives a “command not found” error, add the following line to your shell config (`~/.bashrc` or `~/.zshrc`):
 
 ```bash
-poke-fetch
-```
-
-You should see a Pokémon displayed above your system information.
-
-If running `poke-fetch` gives a “command not found” error, add the following line to your shell configuration file:
-
-**For Bash** (`~/.bashrc`):
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-**For Zsh** (`~/.zshrc`):
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
+export PATH=”$HOME/.local/bin:$PATH”
 ```
 
 Then reload your shell:
