@@ -14,7 +14,7 @@ while [[ $# -gt 0 ]]; do
             ;;
         --help|-h)
             echo "Usage: poke-fetch [--poke \"cmd\"]"
-            echo "  --poke   override pokemon-colorscripts command"
+            echo "  --poke   override pokeget-rs command"
             exit 0
             ;;
         *)
